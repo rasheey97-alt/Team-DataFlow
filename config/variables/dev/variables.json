@@ -1,0 +1,27 @@
+{
+  "team_league_etl_dataflow_dag": {
+    "dag_folder": "team_league_etl_dataflow_dag",
+    "team_stats_source_bucket": "soye_dev",
+    "team_stats_source_object": "hot/etl/dataflow/input_teams_stats_raw.json",
+    "team_stats_dest_bucket": "soye_dev",
+    "team_stats_dest_object": "cold/etl/dataflow/",
+    "team_stats_job_config": {
+      "launchParameter": {
+        "containerSpecGcsPath": "gs://soye_dev/dataflow/templates/team_league/python/team-league-elt-dataflow-python.json",
+        "jobName": "team-league-dataflow-etl-python",
+        "parameters": {
+          "project_id": "",
+          "input_json_file": "gs://soye_dev/hot/etl/dataflow/input_teams_stats_raw.json",
+          "team_league_dataset": "soye_test",
+          "team_stats_table": "team_stat"
+        },
+        "environment": {
+          "serviceAccountEmail": "",
+          "tempLocation": "gs://soye_dev/dataflow/temp",
+          "stagingLocation": "gs://soye_dev/dataflow/staging"
+        }
+      }
+    },
+    "team_stats_job_location": "europe-west1"
+  }
+}
